@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+    <context id="context" targetRuntime="MyBatis3">
+        <commentGenerator>
+            <property name="suppressAllComments" value="true" />
+        </commentGenerator>
+
+        <jdbcConnection connectionURL="jdbc:mysql://localhost:3306/mist" driverClass="com.mysql.cj.jdbc.Driver" password="password" userId="user" />
+
+        <javaModelGenerator targetPackage="com.deg.mist.apps.persistence.model" targetProject="src/main/java" />
+        <sqlMapGenerator targetPackage="com.deg.mist.apps.persistence.mapper.sqlmap" targetProject="src/main/resources" />
+        <javaClientGenerator targetPackage="com.deg.mist.apps.persistence.mapper" targetProject="src/main/java" type="XMLMAPPER" />
+
+        <table tableName="apps" enableCountByExample="false" enableDeleteByExample="false" enableUpdateByExample="false" selectByPrimaryKeyQueryId="false" selectByExampleQueryId="false" enableSelectByExample="false" modelType="flat" />
+        
+    </context>
+</generatorConfiguration>

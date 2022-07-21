@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.deg.mist.apps.persistence.mapper.AppMapper">
+  <resultMap id="BaseResultMap" type="com.deg.mist.apps.persistence.model.AppBean">
+    <id column="appid" jdbcType="BIGINT" property="appid" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="type" jdbcType="BIGINT" property="type" />
+    <result column="req_age" jdbcType="INTEGER" property="reqAge" />
+    <result column="is_free" jdbcType="BIT" property="isFree" />
+    <result column="short_description" jdbcType="VARCHAR" property="shortDescription" />
+    <result column="website" jdbcType="VARCHAR" property="website" />
+    <result column="recommendations" jdbcType="INTEGER" property="recommendations" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.deg.mist.apps.persistence.model.AppBean">
+    <result column="dlc" jdbcType="LONGVARCHAR" property="dlc" />
+    <result column="detailed_description" jdbcType="LONGVARCHAR" property="detailedDescription" />
+    <result column="supported_languages" jdbcType="LONGVARCHAR" property="supportedLanguages" />
+    <result column="pc_requirements" jdbcType="LONGVARCHAR" property="pcRequirements" />
+    <result column="developers" jdbcType="LONGVARCHAR" property="developers" />
+    <result column="publishers" jdbcType="LONGVARCHAR" property="publishers" />
+    <result column="price_overview" jdbcType="LONGVARCHAR" property="priceOverview" />
+    <result column="platforms" jdbcType="LONGVARCHAR" property="platforms" />
+    <result column="categories" jdbcType="LONGVARCHAR" property="categories" />
+    <result column="genres" jdbcType="LONGVARCHAR" property="genres" />
+    <result column="screenshots" jdbcType="LONGVARCHAR" property="screenshots" />
+    <result column="movies" jdbcType="LONGVARCHAR" property="movies" />
+    <result column="achievements" jdbcType="LONGVARCHAR" property="achievements" />
+    <result column="release_date" jdbcType="LONGVARCHAR" property="releaseDate" />
+    <result column="support_info" jdbcType="LONGVARCHAR" property="supportInfo" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    appid, name, type, req_age, is_free, short_description, website, recommendations
+  </sql>
+  <sql id="Blob_Column_List">
+    dlc, detailed_description, supported_languages, pc_requirements, developers, publishers, 
+    price_overview, platforms, categories, genres, screenshots, movies, achievements, 
+    release_date, support_info
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs">
+    select
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from apps
+    where appid = #{appid,jdbcType=BIGINT}
+  </select>
+  <!--
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from apps
+    where appid = #{appid,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.deg.mist.apps.persistence.model.AppBean">
+    insert into apps (appid, name, type, 
+      req_age, is_free, short_description, 
+      website, recommendations, dlc, 
+      detailed_description, supported_languages, 
+      pc_requirements, developers, publishers, 
+      price_overview, platforms, categories, 
+      genres, screenshots, movies, 
+      achievements, release_date, support_info
+      )
+    values (#{appid,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{type,jdbcType=BIGINT}, 
+      #{reqAge,jdbcType=INTEGER}, #{isFree,jdbcType=BIT}, #{shortDescription,jdbcType=VARCHAR}, 
+      #{website,jdbcType=VARCHAR}, #{recommendations,jdbcType=INTEGER}, #{dlc,jdbcType=LONGVARCHAR}, 
+      #{detailedDescription,jdbcType=LONGVARCHAR}, #{supportedLanguages,jdbcType=LONGVARCHAR}, 
+      #{pcRequirements,jdbcType=LONGVARCHAR}, #{developers,jdbcType=LONGVARCHAR}, #{publishers,jdbcType=LONGVARCHAR}, 
+      #{priceOverview,jdbcType=LONGVARCHAR}, #{platforms,jdbcType=LONGVARCHAR}, #{categories,jdbcType=LONGVARCHAR}, 
+      #{genres,jdbcType=LONGVARCHAR}, #{screenshots,jdbcType=LONGVARCHAR}, #{movies,jdbcType=LONGVARCHAR}, 
+      #{achievements,jdbcType=LONGVARCHAR}, #{releaseDate,jdbcType=LONGVARCHAR}, #{supportInfo,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.deg.mist.apps.persistence.model.AppBean">
+    insert into apps
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="appid != null">
+        appid,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="reqAge != null">
+        req_age,
+      </if>
+      <if test="isFree != null">
+        is_free,
+      </if>
+      <if test="shortDescription != null">
+        short_description,
+      </if>
+      <if test="website != null">
+        website,
+      </if>
+      <if test="recommendations != null">
+        recommendations,
+      </if>
+      <if test="dlc != null">
+        dlc,
+      </if>
+      <if test="detailedDescription != null">
+        detailed_description,
+      </if>
+      <if test="supportedLanguages != null">
+        supported_languages,
+      </if>
+      <if test="pcRequirements != null">
+        pc_requirements,
+      </if>
+      <if test="developers != null">
+        developers,
+      </if>
+      <if test="publishers != null">
+        publishers,
+      </if>
+      <if test="priceOverview != null">
+        price_overview,
+      </if>
+      <if test="platforms != null">
+        platforms,
+      </if>
+      <if test="categories != null">
+        categories,
+      </if>
+      <if test="genres != null">
+        genres,
+      </if>
+      <if test="screenshots != null">
+        screenshots,
+      </if>
+      <if test="movies != null">
+        movies,
+      </if>
+      <if test="achievements != null">
+        achievements,
+      </if>
+      <if test="releaseDate != null">
+        release_date,
+      </if>
+      <if test="supportInfo != null">
+        support_info,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="appid != null">
+        #{appid,jdbcType=BIGINT},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=BIGINT},
+      </if>
+      <if test="reqAge != null">
+        #{reqAge,jdbcType=INTEGER},
+      </if>
+      <if test="isFree != null">
+        #{isFree,jdbcType=BIT},
+      </if>
+      <if test="shortDescription != null">
+        #{shortDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="website != null">
+        #{website,jdbcType=VARCHAR},
+      </if>
+      <if test="recommendations != null">
+        #{recommendations,jdbcType=INTEGER},
+      </if>
+      <if test="dlc != null">
+        #{dlc,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="detailedDescription != null">
+        #{detailedDescription,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="supportedLanguages != null">
+        #{supportedLanguages,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="pcRequirements != null">
+        #{pcRequirements,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="developers != null">
+        #{developers,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="publishers != null">
+        #{publishers,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="priceOverview != null">
+        #{priceOverview,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="platforms != null">
+        #{platforms,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="categories != null">
+        #{categories,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="genres != null">
+        #{genres,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="screenshots != null">
+        #{screenshots,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="movies != null">
+        #{movies,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="achievements != null">
+        #{achievements,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="releaseDate != null">
+        #{releaseDate,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="supportInfo != null">
+        #{supportInfo,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.deg.mist.apps.persistence.model.AppBean">
+    update apps
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=BIGINT},
+      </if>
+      <if test="reqAge != null">
+        req_age = #{reqAge,jdbcType=INTEGER},
+      </if>
+      <if test="isFree != null">
+        is_free = #{isFree,jdbcType=BIT},
+      </if>
+      <if test="shortDescription != null">
+        short_description = #{shortDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="website != null">
+        website = #{website,jdbcType=VARCHAR},
+      </if>
+      <if test="recommendations != null">
+        recommendations = #{recommendations,jdbcType=INTEGER},
+      </if>
+      <if test="dlc != null">
+        dlc = #{dlc,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="detailedDescription != null">
+        detailed_description = #{detailedDescription,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="supportedLanguages != null">
+        supported_languages = #{supportedLanguages,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="pcRequirements != null">
+        pc_requirements = #{pcRequirements,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="developers != null">
+        developers = #{developers,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="publishers != null">
+        publishers = #{publishers,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="priceOverview != null">
+        price_overview = #{priceOverview,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="platforms != null">
+        platforms = #{platforms,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="categories != null">
+        categories = #{categories,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="genres != null">
+        genres = #{genres,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="screenshots != null">
+        screenshots = #{screenshots,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="movies != null">
+        movies = #{movies,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="achievements != null">
+        achievements = #{achievements,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="releaseDate != null">
+        release_date = #{releaseDate,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="supportInfo != null">
+        support_info = #{supportInfo,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where appid = #{appid,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.deg.mist.apps.persistence.model.AppBean">
+    update apps
+    set name = #{name,jdbcType=VARCHAR},
+      type = #{type,jdbcType=BIGINT},
+      req_age = #{reqAge,jdbcType=INTEGER},
+      is_free = #{isFree,jdbcType=BIT},
+      short_description = #{shortDescription,jdbcType=VARCHAR},
+      website = #{website,jdbcType=VARCHAR},
+      recommendations = #{recommendations,jdbcType=INTEGER},
+      dlc = #{dlc,jdbcType=LONGVARCHAR},
+      detailed_description = #{detailedDescription,jdbcType=LONGVARCHAR},
+      supported_languages = #{supportedLanguages,jdbcType=LONGVARCHAR},
+      pc_requirements = #{pcRequirements,jdbcType=LONGVARCHAR},
+      developers = #{developers,jdbcType=LONGVARCHAR},
+      publishers = #{publishers,jdbcType=LONGVARCHAR},
+      price_overview = #{priceOverview,jdbcType=LONGVARCHAR},
+      platforms = #{platforms,jdbcType=LONGVARCHAR},
+      categories = #{categories,jdbcType=LONGVARCHAR},
+      genres = #{genres,jdbcType=LONGVARCHAR},
+      screenshots = #{screenshots,jdbcType=LONGVARCHAR},
+      movies = #{movies,jdbcType=LONGVARCHAR},
+      achievements = #{achievements,jdbcType=LONGVARCHAR},
+      release_date = #{releaseDate,jdbcType=LONGVARCHAR},
+      support_info = #{supportInfo,jdbcType=LONGVARCHAR}
+    where appid = #{appid,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.deg.mist.apps.persistence.model.AppBean">
+    update apps
+    set name = #{name,jdbcType=VARCHAR},
+      type = #{type,jdbcType=BIGINT},
+      req_age = #{reqAge,jdbcType=INTEGER},
+      is_free = #{isFree,jdbcType=BIT},
+      short_description = #{shortDescription,jdbcType=VARCHAR},
+      website = #{website,jdbcType=VARCHAR},
+      recommendations = #{recommendations,jdbcType=INTEGER}
+    where appid = #{appid,jdbcType=BIGINT}
+  </update>
+-->
+</mapper>
