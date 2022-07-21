@@ -2,6 +2,8 @@ package com.deg.mist.apps.api.v1_0.apps;
 
 import lombok.Data;
 
+import com.fasterxml.jackson.databind.JsonNode;
+
 @Data
 public class AppDto {
 
@@ -25,30 +27,30 @@ public class AppDto {
 
     private String detailedDescription;
 
-    private String supportedLanguages;
+    private JsonNode  supportedLanguages;
 
-    private String pcRequirements;
+    private JsonNode  pcRequirements;
 
-    private String developers;
+    private JsonNode developers;
 
-    private String publishers;
+    private JsonNode publishers;
 
-    private String priceOverview;
+    private JsonNode priceOverview;
 
-    private String platforms;
+    private JsonNode platforms;
 
-    private String categories;
+    private JsonNode categories;
 
-    private String genres;
+    private JsonNode genres;
 
-    private String screenshots;
+    private JsonNode screenshots;
 
-    private String movies;
+    private JsonNode movies;
 
-    private String achievements;
+    private JsonNode achievements;
 
-    private String releaseDate;
+    private JsonNode releaseDate;
 
-    private String supportInfo;
+    private JsonNode supportInfo;
     
 }

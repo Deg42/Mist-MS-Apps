@@ -28,8 +28,13 @@ public class AppServiceImpl implements AppService {
     @Override
     public AppDto getAppById(Long appid) {
         log.info("Service: Getting app by id: " + appid);
-        final AppDto result = appConverter.toDto(this.appRepository.getAppById(appid));
-        log.info("Service: App obtained: " + result.getName());
+        AppDto result = new AppDto();
+        try {
+            result = appConverter.toDto(this.appRepository.getAppById(appid));
+            log.info("Service: App obtained: " + result.getName());
+        } catch (Exception e) {
+            log.error("Service: Error getting app by id: " + appid);
+        }
         return result;
     }
 

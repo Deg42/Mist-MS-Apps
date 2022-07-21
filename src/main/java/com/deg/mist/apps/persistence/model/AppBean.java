@@ -21,7 +21,7 @@ public class AppBean implements Serializable {
 
     private Integer reqAge;
 
-    private Boolean isFree;
+    private boolean isFree;
 
     private String shortDescription;
 
